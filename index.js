@@ -59,9 +59,9 @@ function run() {
           $('[fill-rule]').removeAttr('fill-rule');
           $('[stroke]').removeAttr('stroke');
           $('[style]').removeAttr('style');
-          $('[clip-rule]').removeAttr('clip-rule');
-          $('g').removeAttr('class');
-          $('path').removeAttr('class');
+          // $('[clip-rule]').removeAttr('clip-rule');
+          // $('g').removeAttr('class');
+          // $('path').removeAttr('class');
         },
         parserOptions: {xmlMode: true},
       })
