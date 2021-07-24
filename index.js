@@ -2,6 +2,7 @@
 
 const {series, src, dest} = require('gulp');
 const svgSprite = require('gulp-svg-sprite');
+const cheerio = require('gulp-cheerio');
 const fs = require('fs');
 
 const {sprite} = require('../../package.json')
@@ -44,6 +45,27 @@ function run() {
   console.log('Start run')
 
   return src(sprite.selector, {cwd: sprite.src})
+      .pipe(
+          cheerio({
+            run: function ($) {
+              if ($('rect').attr('id') == 'Overlay') {
+                $('rect').remove()
+              }
+              $('[fill]').each(function () {
+                if (['black', '#000', '#000000', '#1A3049', '#6F7987', 'none'].includes($(this).attr('fill'))) {
+                  $(this).removeAttr('fill');
+                }
+              })
+              $('[fill-rule]').removeAttr('fill-rule');
+              $('[stroke]').removeAttr('stroke');
+              $('[style]').removeAttr('style');
+              // $('[clip-rule]').removeAttr('clip-rule');
+              // $('g').removeAttr('class');
+              // $('path').removeAttr('class');
+            },
+            parserOptions: {xmlMode: true},
+          })
+      )
     .pipe(svgSprite(config))
     .pipe(dest(sprite.dist))
 }
