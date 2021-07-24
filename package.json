@@ -1,13 +1,13 @@
 {
   "name": "sprite-builder",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin" : {
-    "sprite-builder" : "./index.js"
+  "bin": {
+    "sprite-builder": "./index.js"
   },
   "author": "plixplox",
   "repository": {
@@ -17,9 +17,12 @@
   "license": "MIT",
   "dependencies": {
     "gulp": "^4.0.2",
-    "gulp-cheerio": "^1.0.0",
     "gulp-svg-sprite": "^1.5.0",
-    "gulp-svgmin": "^4.0.1",
     "svg-sprite": "^1.5.0"
+  },
+  "sprite": {
+    "src": "./svg",
+    "selector": "**/*.svg",
+    "dist": "./dist"
   }
 }
